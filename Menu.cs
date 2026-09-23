@@ -2,23 +2,23 @@ using System;
 
 public class Menu
 {
-    public void ExibirMenu()
+    public void Exibir()
     {
         int opcao;
 
         do
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Purple;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("╔════════════════════════════════════════════════════╗");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("║           Liga da Turma                            ║");
-            Console.ForegroundColor = ConsoleColor.Purple;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("╠════════════════════════════════════════════════════╣");
 
 
             // Opções principais do jogo.
-            Console.ForegroundColor = ConsoleColor.Purple;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("║ 1 - Cadastro de Equipes                            ║");
             Console.WriteLine("║ 2 - Registrar Partida                              ║");
             Console.WriteLine("║ 3 - Consultar Histórico                            ║");
@@ -29,7 +29,7 @@ public class Menu
             Console.WriteLine("║ 8 - Créditos                                       ║");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("║ 0 - Sair                                           ║");
-            Console.ForegroundColor = ConsoleColor.Purple;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("╚════════════════════════════════════════════════════╝");
 
             Console.ResetColor();
@@ -44,9 +44,9 @@ public class Menu
                 Console.ResetColor();
 
                 Console.WriteLine("Pressione ENTER para continuar...");
-                string entrada = Console.ReadLine();
+                string entrada2 = Console.ReadLine();
 
-                if (entrada == "")
+                if (entrada2 == "")
                 {
 
                 }
@@ -93,6 +93,10 @@ public class Menu
                     MostrarInstrucoes();
                     break;
 
+                case 8:
+                    MostrarCreditos();
+                    break;
+
                 case 0:
                     Console.WriteLine("Aperte qualquer tecla para sair...");
                     Console.ReadKey(true);
@@ -123,10 +127,10 @@ public class Menu
     {
         Console.Clear();
 
-        Console.ForegroundColor = ConsoleColor.Purple;
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
         Console.WriteLine("======================== INSTRUÇÕES ======================\n");
 
-        Console.ForegroundColor = ConsoleColor.Pink;
+        Console.ForegroundColor = ConsoleColor.DarkBlue;
         Console.WriteLine("FUTSAL:");
 
         Console.ForegroundColor = ConsoleColor.White;
@@ -136,7 +140,7 @@ public class Menu
         Console.WriteLine("E o nome do festival em que a partida foi realizada.");
         Console.WriteLine();
 
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("Pressione qualquer tecla para voltar...");
         Console.ResetColor();
         Console.ReadKey(true);
@@ -146,14 +150,14 @@ void MostrarCreditos()
 {
     Console.Clear();
 
-    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.ForegroundColor = ConsoleColor.DarkMagenta;
     Console.WriteLine("========================= CRÉDITOS ==========================\n");
 
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("Liga da Turma");
     Console.WriteLine();
 
-    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.ForegroundColor = ConsoleColor.DarkBlue;
     Console.WriteLine("Desenvolvedores:");
 
         //estamos utilizando vetores, ó
@@ -171,13 +175,13 @@ void MostrarCreditos()
 
         Console.WriteLine();
 
-    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.ForegroundColor = ConsoleColor.DarkBlue;
     Console.WriteLine("Curso: Técnico em Desenvolvimento de Sistemas");
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("Técnico em Desenvolvimento de Sistemas - 2026");
     Console.WriteLine();
 
-    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.ForegroundColor = ConsoleColor.DarkBlue;
     Console.WriteLine("Professor:");
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("Alisson Zimmer");
@@ -187,7 +191,7 @@ void MostrarCreditos()
     Console.WriteLine("Disciplina de Programação de Aplicativos");
     Console.WriteLine();
 
-    Console.ForegroundColor = ConsoleColor.Green;
+    Console.ForegroundColor = ConsoleColor.DarkMagenta;
     Console.WriteLine("Obrigada!");
     Console.WriteLine();
     Console.WriteLine("Pressione ENTER para voltar ao menu.");
