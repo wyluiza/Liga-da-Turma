@@ -67,11 +67,14 @@ public class Menu
 
                 case 2:
                     List<Equipe> equipes = gerenciadorEquipes.ConsultarEquipes();
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.WriteLine("Equipes cadastradas:");
                     foreach (Equipe equipe in equipes)
                     {
-                        Console.WriteLine($"• {equipe.Nome}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"- {equipe.Nome}");
                     }
+                    Console.ResetColor();
                     Console.WriteLine("Pressione qualquer tecla para continuar...");
                     Console.ReadKey(true);
                     break;
