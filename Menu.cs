@@ -12,7 +12,7 @@ public class Menu
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("╔════════════════════════════════════════════════════╗");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("║           Liga da Turma                            ║");
+            Console.WriteLine("║                  Liga da Turma                     ║");
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("╠════════════════════════════════════════════════════╣");
 
@@ -57,7 +57,7 @@ public class Menu
             {
 
                 case 1:
-                    //cadastrar equipes
+                    Gerenciador gerenciadorEquipes = new Gerenciador();
                     break;
 
                 case 2:

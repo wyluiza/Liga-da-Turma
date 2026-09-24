@@ -1,5 +1,7 @@
 public class Equipe
 {
-    string Equipe1 = "";
-    string Equipe2 = "";
+    public Equipe(string nome)
+    {
+        nomeEquipe = nome;
+    }
 }
