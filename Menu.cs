@@ -2,6 +2,7 @@ using System;
 
 public class Menu
 {
+    Gerenciador gerenciadorEquipes = new Gerenciador();
     public void Exibir()
     {
         int opcao;
@@ -19,14 +20,15 @@ public class Menu
 
             // Opções principais do jogo.
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("║ 1 - Cadastro de Equipes                            ║");
-            Console.WriteLine("║ 2 - Registrar Partida                              ║");
-            Console.WriteLine("║ 3 - Consultar Histórico                            ║");
-            Console.WriteLine("║ 4 - Cadastrar Festival                             ║");
-            Console.WriteLine("║ 5 - Gerar Convite                                  ║");
-            Console.WriteLine("║ 6 - Cartão de Resultado                            ║");
-            Console.WriteLine("║ 7 - Instruções de Funcionamento                    ║");
-            Console.WriteLine("║ 8 - Créditos                                       ║");
+            Console.WriteLine("║ 1 - Cadastrar Equipes                              ║");
+            Console.WriteLine("║ 2 - Consultar Equipes                              ║");
+            Console.WriteLine("║ 3 - Registrar Partida                              ║");
+            Console.WriteLine("║ 4 - Consultar Histórico                            ║");
+            Console.WriteLine("║ 5 - Cadastrar Festival                             ║");
+            Console.WriteLine("║ 6 - Gerar Convite                                  ║");
+            Console.WriteLine("║ 7 - Cartão de Resultado                            ║");
+            Console.WriteLine("║ 8 - Instruções de Funcionamento                    ║");
+            Console.WriteLine("║ 9 - Créditos                                       ║");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("║ 0 - Sair                                           ║");
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -44,7 +46,7 @@ public class Menu
                 Console.ResetColor();
 
                 Console.WriteLine("Pressione ENTER para continuar...");
-                string entrada2 = Console.ReadLine();
+                string? entrada2 = Console.ReadLine();
 
                 if (entrada2 == "")
                 {
@@ -57,43 +59,48 @@ public class Menu
             {
 
                 case 1:
-                    Gerenciador gerenciadorEquipes = new Gerenciador();
+                    Console.WriteLine("Cadastro de Equipes");
+                    Console.WriteLine("Digite o nome da equipe:");
+                    string? nomeEquipe = Console.ReadLine();
+                    gerenciadorEquipes.CadastrarEquipe(nomeEquipe);
                     break;
 
                 case 2:
-
-                    // registrar partida
-
+                    List<Equipe> equipes = gerenciadorEquipes.ConsultarEquipes();
+                    Console.WriteLine("Equipes cadastradas:");
+                    foreach (Equipe equipe in equipes)
+                    {
+                        Console.WriteLine($"• {equipe.Nome}");
+                    }
+                    Console.WriteLine("Pressione qualquer tecla para continuar...");
+                    Console.ReadKey(true);
                     break;
 
                 case 3:
-
-                    //consulta historico
 
                     break;
 
                 case 4:
 
-                    //cadastrar festival
-
                     break;
                 
                 case 5:
-                    //gerar convite
 
                     break;
 
                 case 6:
-                    //cartão de resultado
 
                     break;
 
                 case 7:
-                    //mostrar instruções
-                    MostrarInstrucoes();
+
                     break;
 
                 case 8:
+                    MostrarInstrucoes();
+                    break;
+                
+                case 9:
                     MostrarCreditos();
                     break;
 
