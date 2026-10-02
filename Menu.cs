@@ -207,7 +207,11 @@
 
                     case 4:
                         List<Partida> historico = gerenciadorEquipes.ConsultarPartidas();
-                        
+                        foreach (Partida partida in historico)
+                        {
+                            Console.WriteLine(partida.Equipe1.Nome);
+                        }
+
                         break;
                     
                     case 5:

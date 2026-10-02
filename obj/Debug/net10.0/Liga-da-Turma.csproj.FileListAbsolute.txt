@@ -1,0 +1,15 @@
+C:\Users\luiza_knop\Documents\Liga-da-Turma\bin\Debug\net10.0\Liga-da-Turma.exe
+C:\Users\luiza_knop\Documents\Liga-da-Turma\bin\Debug\net10.0\Liga-da-Turma.deps.json
+C:\Users\luiza_knop\Documents\Liga-da-Turma\bin\Debug\net10.0\Liga-da-Turma.runtimeconfig.json
+C:\Users\luiza_knop\Documents\Liga-da-Turma\bin\Debug\net10.0\Liga-da-Turma.dll
+C:\Users\luiza_knop\Documents\Liga-da-Turma\bin\Debug\net10.0\Liga-da-Turma.pdb
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.AssemblyInfoInputs.cache
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.AssemblyInfo.cs
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.csproj.CoreCompileInputs.cache
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.sourcelink.json
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.dll
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\refint\Liga-da-Turma.dll
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.pdb
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\Liga-da-Turma.genruntimeconfig.cache
+C:\Users\luiza_knop\Documents\Liga-da-Turma\obj\Debug\net10.0\ref\Liga-da-Turma.dll
