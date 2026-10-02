@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    // 1. Definição da estrutura dos dados
+    public class Cadastro
+    {
+        public string Nome { get; set; }
+        public string Cargo { get; set; }
+        public string Email { get; set; }
+    }
+
+    static void Main(string[] args)
+    {
+        // 2. Criação da lista com os 3 dados cadastrados
+        List<Cadastro> listaCartoes = new List<Cadastro>()
+        {
+            new Cadastro { Nome = "Ana Silva", Cargo = "Dev C#", Email = "ana@email.com" },
+            new Cadastro { Nome = "Bruno Lima", Cargo = "Gerente", Email = "bruno@email.com" },
+            new Cadastro { Nome = "Carla Souza", Cargo = "Designer", Email = "carla@email.com" }
+        };
+
+        Console.WriteLine("=== MEUS CARTÕES CADASTRADOS ===\n");
+
+        // 3. Laço para desenhar os 3 cartões textuais
+        foreach (var item in listaCartoes)
+        {
+            DesenharCartao(item.Nome, item.Cargo, item.Email);
+        }
+
+        Console.ReadLine();
+    }
+
+    // 4. Função auxiliar que desenha o cartão textual na tela
+    static void DesenharCartao(string nome, string cargo, string email)
+    {
+        Console.WriteLine("+---------------------------------------+");
+        Console.WriteLine($"| NOME:  {nome,-30} |");
+        Console.WriteLine($"| CARGO: {cargo,-30} |");
+        Console.WriteLine($"| EMAIL: {email,-30} |");
+        Console.WriteLine("+---------------------------------------+");
+        Console.WriteLine(); // Linha em branco para separar os cartões
+    }
+}

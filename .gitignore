@@ -1,2 +1,45 @@
-bin
-obj
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    // 1. A CLASSE: É o molde/modelo do cartão
+    public class CartaoObjeto
+    {
+        public string Nome { get; set; }
+        public string Cargo { get; set; }
+        public string Email { get; set; }
+
+        // Método do próprio objeto para se desenhar como cartão textual
+        public void ExibirComoCartao()
+        {
+            Console.WriteLine("+---------------------------------------+");
+            Console.WriteLine($"| NOME:  {Nome,-30} |");
+            Console.WriteLine($"| CARGO: {Cargo,-30} |");
+            Console.WriteLine($"| EMAIL: {Email,-30} |");
+            Console.WriteLine("+---------------------------------------+");
+            Console.WriteLine();
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        // 2. OS OBJETOS: Instanciando os 3 cartões com os dados cadastrados
+        CartaoObjeto cartao1 = new CartaoObjeto { Nome = "Ana Silva", Cargo = "Dev C#", Email = "ana@email.com" };
+        CartaoObjeto cartao2 = new CartaoObjeto { Nome = "Bruno Lima", Cargo = "Gerente", Email = "bruno@email.com" };
+        CartaoObjeto cartao3 = new CartaoObjeto { Nome = "Carla Souza", Cargo = "Designer", Email = "carla@email.com" };
+
+        // 3. Adicionando os objetos a uma lista para gerenciá-los juntos
+        List<CartaoObjeto> listaDeCartoes = new List<CartaoObjeto> { cartao1, cartao2, cartao3 };
+
+        Console.WriteLine("=== EXIBINDO OS OBJETOS CADASTRADOS ===\n");
+
+        // 4. Chamando o comportamento de cada objeto
+        foreach (var cartao in listaDeCartoes)
+        {
+            cartao.ExibirComoCartao();
+        }
+
+        Console.ReadLine();
+    }
+}
