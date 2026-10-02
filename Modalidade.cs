@@ -1,4 +1,4 @@
-enum Modalidade
+public enum Modalidade
 {
     Futsal,
     Esports
