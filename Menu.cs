@@ -99,6 +99,9 @@
                         Console.WriteLine("═══════════════ CADASTRAR PARTIDA ══════════════");
                         Console.ResetColor();
                         List<Equipe> listaDeEquipes = gerenciadorEquipes.ConsultarEquipes();
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        Console.WriteLine("Equipes cadastradas:");
+                        Console.ResetColor();
                         foreach (Equipe equipe in listaDeEquipes)
                         {
                             Console.WriteLine($"- {equipe.Nome}");
@@ -390,10 +393,10 @@
                             Console.ForegroundColor = ConsoleColor.White;
 
                             Console.WriteLine("║                                                    ║");
-                            Console.WriteLine($"║  Festival: {festivalCadastrado.Nome,-39}║");
-                            Console.WriteLine($"║  Local:    {festivalCadastrado.Local,-39}║");
-                            Console.WriteLine($"║  Data:     {festivalCadastrado.Data,-39}║");
-                            Console.WriteLine($"║  Horário:  {festivalCadastrado.Horario,-39}║");
+                            Console.WriteLine($"║  Festival: {festivalCadastrado.Nome,-39} ║");
+                            Console.WriteLine($"║  Local:    {festivalCadastrado.Local,-39} ║");
+                            Console.WriteLine($"║  Data:     {festivalCadastrado.Data,-39} ║");
+                            Console.WriteLine($"║  Horário:  {festivalCadastrado.Horario,-39} ║");
                             Console.WriteLine("║                                                    ║");
 
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -411,7 +414,45 @@
                         
                         break;
 
-                    case 7:
+                        case 7:
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("═══════════════ CARTÃO DE RESULTADO ═══════════════\n");
+                            Console.ResetColor();
+                            List<Partida> listaDePartidas = gerenciadorEquipes.ConsultarPartidas();
+
+                            if (listaDePartidas.Count == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine("Nenhuma partida foi cadastrada ainda.");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                foreach (Partida partida in listaDePartidas)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.WriteLine($"Modalidade: {partida.Modalidade}");
+                                    Console.WriteLine($"{partida.Equipe1.Nome} {partida.PlacarEquipe1} X {partida.PlacarEquipe2} {partida.Equipe2.Nome}");
+                                    if (partida.PlacarEquipe1 > partida.PlacarEquipe2)
+                                    {
+                                        Console.WriteLine($"Equipe vencedora: {partida.Equipe1.Nome}");
+                                    }
+                                    else if (partida.PlacarEquipe1 < partida.PlacarEquipe2)
+                                    {
+                                        Console.WriteLine($"Equipe vencedora: {partida.Equipe2.Nome}");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("A partida terminou em empate.");
+                                    }
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    Console.WriteLine("════════════════════════════════════════════════════");
+                                    Console.ResetColor();
+                                }
+                            }
+                        Console.WriteLine("\nPressione qualquer tecla para continuar...");
+                        Console.ReadKey(true);
 
                         break;
 
@@ -462,8 +503,16 @@
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Para registrar uma partida de futsal, você deve informar");
             Console.WriteLine("O nome das equipes;");
-            Console.WriteLine("O número de gols de cada equipe;");
-            Console.WriteLine("E o nome do festival em que a partida foi realizada.");
+            Console.WriteLine("E o número de pontos de cada equipe.");
+            Console.WriteLine();
+            
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("ESPORTS:");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Para registrar uma partida de esports (qualquer modalidade online), você deve informar");
+            Console.WriteLine("O nome das equipes;");
+            Console.WriteLine("E o número de pontos de cada equipe.")
             Console.WriteLine();
 
             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -485,8 +534,6 @@
 
         Console.ForegroundColor = ConsoleColor.DarkBlue;
         Console.WriteLine("Desenvolvedores:");
-
-            //estamos utilizando vetores, ó
             string[] equipe =
             {
                 "Luiza Triches",
