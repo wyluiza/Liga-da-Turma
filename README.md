@@ -15,32 +15,22 @@ Gera um convite com os dados do evento.
 Cria cartões com os resultados das partidas.
 
 Tecnologias utilizadas
-C#
-.NET
-Visual Studio Code
-Git e GitHub
-IA Generativa para apoio na hora de codar
+C#, .NET, Visual Studio Code, Git e GitHub e apoio IA Generativa na hora de codar
 
 Como executar
 
-Para executar o projeto, é necessário ter o .NET SDK instalado no computador.
+Para executar o projeto, é necessário ter o .NET SDK instalado no computador, clone o repositório, entre na pasta do projeto, execute o comando dotnet run no terminal e depois disso, o menu principal será exibido no console.
 
-Clone o repositório
 
-Entre na pasta do projeto
+Programacao Orientada a Objetos
+Durante o desenvolvimento do projeto, utilizamos os cinco conceitos de Programação Orientada a Objetos (POO) estudados em aula :D
 
-Execute o comando dotnet run
+Abstração: utilizamos a classe abstrata Partida como modelo para representar as características comuns das partidas, deixando os detalhes específicos para cada modalidade.
+Encapsulamento: protegemos os dados das classes e controlamos o acesso a eles por meio de propriedades e métodos.
+Herança: criamos as classes PartidaFutsal e PartidaEsports, que herdam características da classe Partida.
+Interfaces: utilizamos a interface InterfaceResultadoPartida, que define o método ObterResultado(), implementado pelas duas classes de partida.
+Polimorfismo: utilizamos o mesmo método ObterResultado() nas diferentes modalidades, permitindo que cada uma apresente seu resultado de acordo com suas próprias regras.
 
-Depois disso, o menu principal será exibido no console.
-
-Programação Orientada a Objetos
-Durante o desenvolvimento do projeto, utilizamos os conceitos de Programação Orientada a Objetos (POO) estudados em aula:
-
-Abstração: utilizamos classes para representar os elementos do festival, como equipes e partidas.
-Encapsulamento: organizamos os dados dentro das classes e controlamos o acesso a eles por meio de propriedades e métodos.
-Herança: utilizamos uma classe base e classes derivadas para reaproveitar características e comportamentos.
-Interfaces: definimos comportamentos que podem ser utilizados por diferentes classes.
-Polimorfismo: permitimos que diferentes classes tenham suas próprias implementações de um mesmo comportamento.
 
 Desenvolvedoras
 Luiza Triches, Milena Frey
