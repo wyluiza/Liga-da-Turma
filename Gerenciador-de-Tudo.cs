@@ -23,4 +23,15 @@ public class Gerenciador
     {
         return partidas;
     }
+    Festival? festival;
+    public void CadastrarFestival(string nome, string local, string data, string horario)
+    {
+        Festival novoFestival = new Festival(nome, local, data, horario);
+        festival = novoFestival;
+    }
+    public Festival? ConsultarFestival() //esse ? faz retornar null caso n tenha nenhum festival
+    {
+        return festival;
+    }
+
 }

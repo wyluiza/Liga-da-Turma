@@ -1,6 +1,7 @@
     using System;
     using System.Linq; // pra usar o firstOrDefault
     using System.Collections.Generic;
+    using System.Globalization; // pra fazer as horas e datas
 
     public class Menu
     {
@@ -46,8 +47,9 @@
                     Console.WriteLine("\nOpção inválida!");
 
                     Console.ResetColor();
-
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Pressione ENTER para continuar...");
+                    Console.ResetColor();
                     Console.ReadLine();
                     opcao = -1; // Define uma opção inválida para continuar o loop
                     continue;
@@ -59,7 +61,9 @@
                 {
 
                     case 1:
-                        Console.WriteLine("Cadastro de Equipes");
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("═══════════════ CADASTRAR EQUIPES ══════════════");
+                        Console.ResetColor();
                         Console.WriteLine("Digite o nome da equipe:");
                         string? nomeEquipe = Console.ReadLine();
 
@@ -69,14 +73,17 @@
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("O nome da equipe não pode ficar vazio.");
+                            Console.ResetColor();
                         }
                         break;
 
                     case 2:
                         List<Equipe> equipes = gerenciadorEquipes.ConsultarEquipes();
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("Equipes cadastradas:");
+                        Console.WriteLine("═══════════════ EQUIPES CADASTRADAS ══════════════");
+                        Console.ResetColor();
                         foreach (Equipe equipe in equipes)
                         {
                             Console.ForegroundColor = ConsoleColor.White;
@@ -88,23 +95,36 @@
                         break;
 
                     case 3:
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("═══════════════ CADASTRAR PARTIDA ══════════════");
+                        Console.ResetColor();
                         List<Equipe> listaDeEquipes = gerenciadorEquipes.ConsultarEquipes();
                         foreach (Equipe equipe in listaDeEquipes)
                         {
                             Console.WriteLine($"- {equipe.Nome}");
                         }
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.WriteLine("Digite o nome da primeira equipe:");
+                        Console.ResetColor();
                         string? nomeEquipe1 = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.WriteLine("Digite o nome da segunda equipe:");
+                        Console.ResetColor();
                         string? nomeEquipe2 = Console.ReadLine();
                         Equipe? equipe1 = listaDeEquipes.FirstOrDefault(e => e.Nome == nomeEquipe1);
                         Equipe? equipe2 = listaDeEquipes.FirstOrDefault(e => e.Nome == nomeEquipe2);
+                        Console.ResetColor();
                         if (equipe1 != null && equipe2 != null) //verifica se as duas equipes existem na lista
                         {
                             if (equipe1 != equipe2)
                             {
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
                                 Console.WriteLine("Equipes encontradas.");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
                                 Console.WriteLine("Selecione a modalidade da partida:");
+                                Console.ResetColor();
+                            
                                 Console.WriteLine("1 - Futsal");
                                 Console.WriteLine("2 - Esports");
                                 string? entradaModalidade = Console.ReadLine();
@@ -114,12 +134,45 @@
                                     if (modalidadeEscolhida == 1 || modalidadeEscolhida == 2)
                                     {
                                         Modalidade modalidade = (Modalidade)(modalidadeEscolhida - 1);
-                                        Partida partidaCadastrada = gerenciadorEquipes.CadastrarPartida(equipe1, equipe2, modalidade);
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
                                         Console.WriteLine("Partida cadastrada com sucesso.");
-                                        Console.WriteLine($"Quantos pontos a equipe {partidaCadastrada.Equipe1.Nome} fez?");
-                                        int pontosEquipe1 = int.Parse(Console.ReadLine()!);
-                                        Console.WriteLine($"Quantos pontos a equipe {partidaCadastrada.Equipe2.Nome} fez?");
-                                        int pontosEquipe2 = int.Parse(Console.ReadLine()!);
+                                        Console.ResetColor();
+                                        Console.WriteLine($"Quantos pontos a equipe {equipe1.Nome} fez?");
+
+                                        int pontosEquipe1 = -1;
+                                            bool entradaValida1 = false;
+
+                                            while (!entradaValida1 || pontosEquipe1 < 0)
+                                                {
+                                                    entradaValida1 = int.TryParse(Console.ReadLine(), out pontosEquipe1);
+
+                                                    if (!entradaValida1 || pontosEquipe1 < 0)
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.Red;
+                                                        Console.WriteLine("Digite uma pontuação válida (número inteiro igual ou maior que zero).");
+                                                        Console.ResetColor();
+                                                        Console.WriteLine("");
+                                                        Console.WriteLine($"Quantos pontos a equipe {equipe1.Nome} fez?");
+                                                    }
+                                                }
+                                            Console.WriteLine($"Quantos pontos a equipe {equipe2.Nome} fez?");
+                                                int pontosEquipe2 = -1;
+                                                bool entradaValida2 = false;
+
+                                                while (!entradaValida2 || pontosEquipe2 < 0)
+                                                {
+                                                    entradaValida2 = int.TryParse(Console.ReadLine(), out pontosEquipe2);
+
+                                                    if (!entradaValida2 || pontosEquipe2 < 0)
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.Red;
+                                                        Console.WriteLine("Digite uma pontuação válida (número inteiro igual ou maior que zero).");
+                                                        Console.ResetColor();
+                                                        Console.WriteLine("");
+                                                        Console.WriteLine($"Quantos pontos a equipe {equipe2.Nome} fez?");
+                                                    }
+                                                }
+                                        Partida partidaCadastrada = gerenciadorEquipes.CadastrarPartida(equipe1, equipe2, modalidade);
                                         partidaCadastrada.RegistrarPlacar(pontosEquipe1, pontosEquipe2);
                                         if (partidaCadastrada.PlacarEquipe1 >= 0 && partidaCadastrada.PlacarEquipe2 >= 0)
                                         {
@@ -173,34 +226,41 @@
                                     }
                                     else
                                     {
+                                        Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Os pontos não podem ser negativos.");
+                                        Console.ResetColor();
                                     }
                                     }
                                     
                                 else
                                 {
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
                                     Console.WriteLine("Digite uma opção válida.");
-                                
+                                    Console.ResetColor();
                                 }
                                 }
                                 else
                                 {
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
                                     Console.WriteLine("Digite um número válido.");
-                                    
+                                    Console.ResetColor();
                                 }  
                             }
                             else
                             {
-                                Console.WriteLine("Escolha duas equipes diferentes.");
-                                
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Escolha duas equipes diferentes."); 
+                                Console.ResetColor();
                             }
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Uma ou as duas equipes não foram encontradas.");
+                            Console.ResetColor();
                             
                         }
-                        Console.WriteLine("Pressione qualquer tecla para continuar...");
+                        Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
                         Console.ReadKey(true);
                         Console.ResetColor();
                         break;
@@ -227,17 +287,18 @@
 
                                 if (partida.PlacarEquipe1 > partida.PlacarEquipe2)
                                 {
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.WriteLine($"Equipe vencedora: {partida.Equipe1.Nome}");
                                 }
                                 else if (partida.PlacarEquipe1 < partida.PlacarEquipe2)
                                 {
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.WriteLine($"Equipe vencedora: {partida.Equipe2.Nome}");
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Resultado: Empate");
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.WriteLine("A partida foi um empate.");
                                 }
                                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                 Console.WriteLine("════════════════════════════════════════════════════");
@@ -250,11 +311,104 @@
                         break;
                     
                     case 5:
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("═══════════════ CADASTRO DO FESTIVAL ════════════════");
+                        Console.ResetColor();
+
+                        Console.Write("Digite o nome do festival: ");
+                        string? nome = Console.ReadLine();
+
+                        Console.Write("Digite o local do festival: ");
+                        string? local = Console.ReadLine();
+
+                        Console.Write("Digite a data do festival: ");
+                        string? data = Console.ReadLine();
+
+                        Console.Write("Digite o horário do festival: ");
+                        string? horario = Console.ReadLine();
+
+                        bool dataValida = DateTime.TryParseExact( // validando as datas
+                            data,
+                            "dd/MM/yyyy",
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None,
+                            out _
+                        );
+                        bool horarioValido = DateTime.TryParseExact( // validando horários
+                            horario,
+                            "HH:mm",
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None,
+                            out _
+                        );
+                        if (!string.IsNullOrWhiteSpace(nome) && //verifica se o campo n ta vazio
+                            !string.IsNullOrWhiteSpace(local) &&
+                            !string.IsNullOrWhiteSpace(data) &&
+                            !string.IsNullOrWhiteSpace(horario) &&
+                            dataValida &&
+                            horarioValido)
+                        {
+                            gerenciadorEquipes.CadastrarFestival(nome, local, data, horario);
+
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("\nFestival cadastrado com sucesso!");
+                            Console.ResetColor();
+                        }
+                        else
+                        {   
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Algo deu errado ao cadastrar o festival.");
+                            Console.WriteLine("\nPreencha todos os campos corretamente. Use DD/MM/AAAA para a data e HH:MM para o horário.");
+                            Console.ResetColor();
+                        }
+
+                        Console.WriteLine("\nPressione qualquer tecla para continuar...");
+                        Console.ReadKey(true);
 
                         break;
 
                     case 6:
+                        Console.Clear();
 
+                        Festival? festivalCadastrado = gerenciadorEquipes.ConsultarFestival();
+
+                        if (festivalCadastrado == null)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine("Nenhum festival foi cadastrado ainda.");
+                            Console.ResetColor(); 
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+
+                            Console.WriteLine("╔════════════════════════════════════════════════════╗");
+                            Console.WriteLine("║                   CONVITE ESPECIAL                 ║");
+                            Console.WriteLine("╠════════════════════════════════════════════════════╣");
+
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                            Console.WriteLine("║                                                    ║");
+                            Console.WriteLine($"║  Festival: {festivalCadastrado.Nome,-39}║");
+                            Console.WriteLine($"║  Local:    {festivalCadastrado.Local,-39}║");
+                            Console.WriteLine($"║  Data:     {festivalCadastrado.Data,-39}║");
+                            Console.WriteLine($"║  Horário:  {festivalCadastrado.Horario,-39}║");
+                            Console.WriteLine("║                                                    ║");
+
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+
+                            Console.WriteLine("╠════════════════════════════════════════════════════╣");
+                            Console.WriteLine("║            Aguardamos você no festival :)          ║");
+                            Console.WriteLine("╚════════════════════════════════════════════════════╝");
+
+                            Console.ResetColor();
+                        }
+
+                        Console.WriteLine("\nPressione qualquer tecla para continuar...");
+                        Console.ReadKey(true);
+
+                        
                         break;
 
                     case 7:
