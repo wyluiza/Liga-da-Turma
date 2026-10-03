@@ -180,9 +180,11 @@
 
                                                             Console.WriteLine("\nPartida cadastrada com sucesso!");
                                                         }
-                                                        catch (ArgumentException erro)
+                                                        catch (ArgumentException erro) // captura e trata um erro q acontece no progrwama
                                                         {
+                                                            Console.ForegroundColor = ConsoleColor.Red;
                                                             Console.WriteLine($"\n{erro.Message}");
+                                                            Console.ResetColor();
                                                         }
                                         if (partidaCadastrada != null)
                                         {
@@ -292,21 +294,9 @@
                                 Console.WriteLine($"{partida.Equipe1.Nome} {partida.PlacarEquipe1} X {partida.PlacarEquipe2} {partida.Equipe2.Nome}");
                                 Console.ResetColor();
 
-                                if (partida.PlacarEquipe1 > partida.PlacarEquipe2)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                    Console.WriteLine($"Equipe vencedora: {partida.Equipe1.Nome}");
-                                }
-                                else if (partida.PlacarEquipe1 < partida.PlacarEquipe2)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                    Console.WriteLine($"Equipe vencedora: {partida.Equipe2.Nome}");
-                                }
-                                else
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                    Console.WriteLine("A partida foi um empate.");
-                                }
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                Console.WriteLine(partida.ObterResultado());
+                                Console.ResetColor();
                                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                 Console.WriteLine("════════════════════════════════════════════════════");
                                 Console.ResetColor();

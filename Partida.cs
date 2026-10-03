@@ -1,4 +1,4 @@
- public abstract class Partida // tornei ela uma classe abstrata pra usar de modelo
+    public abstract class Partida // tornei ela uma classe abstrata pra usar de modelo
 {
     Equipe equipe1;
     Equipe equipe2;
@@ -54,4 +54,5 @@
             return modalidade;
         }
     }
+    public abstract string ObterResultado();
 }

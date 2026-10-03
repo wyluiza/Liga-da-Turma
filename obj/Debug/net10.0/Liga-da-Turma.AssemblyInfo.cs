@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Liga-da-Turma")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15b3de94ba12916cfb6683c5f83469dabdcc748f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3db7c394f7e7da2974a562e5491d845338f8e77")]
 [assembly: System.Reflection.AssemblyProductAttribute("Liga-da-Turma")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Liga-da-Turma")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
