@@ -156,17 +156,17 @@
                                             Console.WriteLine("╚════════════════════════════════════════════════════╝");
                                             if (partidaCadastrada.PlacarEquipe1 > partidaCadastrada.PlacarEquipe2)
                                             {
-                                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                                Console.ForegroundColor = ConsoleColor.Magenta;
                                                 Console.WriteLine($"A equipe {partidaCadastrada.Equipe1.Nome} venceu a partida! Parabéns!");
                                             }
                                             else if (partidaCadastrada.PlacarEquipe1 < partidaCadastrada.PlacarEquipe2)
                                             {
-                                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                                Console.ForegroundColor = ConsoleColor.Magenta;
                                                 Console.WriteLine($"A equipe {partidaCadastrada.Equipe2.Nome} venceu a partida! Parabéns!");
                                             }
                                             else
                                             {
-                                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                                Console.ForegroundColor = ConsoleColor.Magenta;
                                                 Console.WriteLine("A partida terminou em um empate.");
                                             }
                                             Console.ResetColor();
@@ -207,11 +207,46 @@
 
                     case 4:
                         List<Partida> historico = gerenciadorEquipes.ConsultarPartidas();
-                        foreach (Partida partida in historico)
+
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("═══════════════ HISTÓRICO DE PARTIDAS ══════════════\n");
+                        Console.ResetColor();
+
+                        if (historico.Count == 0)
                         {
-                            Console.WriteLine(partida.Equipe1.Nome);
+                            Console.WriteLine("Nenhuma partida foi registrada ainda.");
+                        }
+                        else
+                        {
+                            foreach (Partida partida in historico)
+                            {
+                                Console.WriteLine($"Modalidade: {partida.Modalidade}");
+                                Console.WriteLine($"{partida.Equipe1.Nome} {partida.PlacarEquipe1} X {partida.PlacarEquipe2} {partida.Equipe2.Nome}");
+                                Console.ResetColor();
+
+                                if (partida.PlacarEquipe1 > partida.PlacarEquipe2)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    Console.WriteLine($"Equipe vencedora: {partida.Equipe1.Nome}");
+                                }
+                                else if (partida.PlacarEquipe1 < partida.PlacarEquipe2)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    Console.WriteLine($"Equipe vencedora: {partida.Equipe2.Nome}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Resultado: Empate");
+                                }
+                                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                Console.WriteLine("════════════════════════════════════════════════════");
+                                Console.ResetColor();
+                            }
                         }
 
+                        Console.WriteLine("\nPressione qualquer tecla para voltar...");
+                        Console.ReadKey(true);
                         break;
                     
                     case 5:
@@ -265,7 +300,7 @@
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("======================== INSTRUÇÕES ======================\n");
+            Console.WriteLine("══════════════════ INSTRUÇÕES ══════════════════                 \n");
 
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("FUTSAL:");
@@ -288,7 +323,7 @@
         Console.Clear();
 
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        Console.WriteLine("========================= CRÉDITOS ==========================\n");
+        Console.WriteLine("══════════════════ CRÉDITOS ══════════════════\n");
 
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("Liga da Turma");
