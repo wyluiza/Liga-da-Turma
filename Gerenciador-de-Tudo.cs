@@ -13,12 +13,21 @@ public class Gerenciador
     }
 
     List<Partida> partidas = new ();
-        public Partida CadastrarPartida(Equipe equipe1, Equipe equipe2, Modalidade modalidade)
-    {
-        Partida novaPartida = new Partida(equipe1, equipe2, modalidade);
+        public Partida CadastrarPartida(Equipe equipe1, Equipe equipe2, Modalidade modalidade, int pontosEquipe1, int pontosEquipe2)
+        {
+        Partida novaPartida;
+        if (modalidade == Modalidade.Futsal)
+            {
+                novaPartida = new PartidaFutsal(equipe1, equipe2);
+            }
+            else
+            {
+                novaPartida = new PartidaEsports(equipe1, equipe2);
+            }
+        novaPartida.RegistrarPlacar(pontosEquipe1, pontosEquipe2);
         partidas.Add(novaPartida);
         return novaPartida;
-    }
+        }
     public List<Partida> ConsultarPartidas()
     {
         return partidas;

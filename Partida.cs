@@ -1,4 +1,4 @@
-public class Partida
+ public abstract class Partida // tornei ela uma classe abstrata pra usar de modelo
 {
     Equipe equipe1;
     Equipe equipe2;
@@ -13,12 +13,12 @@ public class Partida
         this.equipe2 = equipe2;
         this.modalidade = modalidade;
     }
-    public void RegistrarPlacar(int pontosEquipe1, int pontosEquipe2)
-    {
-        this.placarEquipe1 = pontosEquipe1;
-        this.placarEquipe2 = pontosEquipe2;
-        
-    }
+        public abstract void RegistrarPlacar(int pontosEquipe1, int pontosEquipe2);
+        protected void DefinirPlacar(int pontosEquipe1, int pontosEquipe2) // protected define qm vai acessar o método
+        {
+            placarEquipe1 = pontosEquipe1;
+            placarEquipe2 = pontosEquipe2;
+        }
     public int PlacarEquipe1
     {
         get

@@ -137,8 +137,6 @@
                                     if (modalidadeEscolhida == 1 || modalidadeEscolhida == 2)
                                     {
                                         Modalidade modalidade = (Modalidade)(modalidadeEscolhida - 1);
-                                        Console.ForegroundColor = ConsoleColor.Magenta;
-                                        Console.WriteLine("Partida cadastrada com sucesso.");
                                         Console.ResetColor();
                                         Console.WriteLine($"Quantos pontos a equipe {equipe1.Nome} fez?");
 
@@ -175,8 +173,19 @@
                                                         Console.WriteLine($"Quantos pontos a equipe {equipe2.Nome} fez?");
                                                     }
                                                 }
-                                        Partida partidaCadastrada = gerenciadorEquipes.CadastrarPartida(equipe1, equipe2, modalidade);
-                                        partidaCadastrada.RegistrarPlacar(pontosEquipe1, pontosEquipe2);
+                                                    Partida? partidaCadastrada = null;
+                                                        try
+                                                        {
+                                                            partidaCadastrada = gerenciadorEquipes.CadastrarPartida(equipe1, equipe2, modalidade, pontosEquipe1, pontosEquipe2);
+
+                                                            Console.WriteLine("\nPartida cadastrada com sucesso!");
+                                                        }
+                                                        catch (ArgumentException erro)
+                                                        {
+                                                            Console.WriteLine($"\n{erro.Message}");
+                                                        }
+                                        if (partidaCadastrada != null)
+                                        {
                                         if (partidaCadastrada.PlacarEquipe1 >= 0 && partidaCadastrada.PlacarEquipe2 >= 0)
                                         {
                                         string nomeEquipe1Formatado;
@@ -210,6 +219,7 @@
                                             Console.WriteLine("╠════════════════════════════════════════════════════╣");
                                             Console.WriteLine($"║ {nomeEquipe1Formatado} {partidaCadastrada.PlacarEquipe1,3} X {nomeEquipe2Formatado} {partidaCadastrada.PlacarEquipe2,3} ".PadRight(53) + "║");                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                             Console.WriteLine("╚════════════════════════════════════════════════════╝");
+                                        }
                                             if (partidaCadastrada.PlacarEquipe1 > partidaCadastrada.PlacarEquipe2)
                                             {
                                                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -226,12 +236,6 @@
                                                 Console.WriteLine("A partida terminou em um empate.");
                                             }
                                             Console.ResetColor();
-                                    }
-                                    else
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Os pontos não podem ser negativos.");
-                                        Console.ResetColor();
                                     }
                                     }
                                     
@@ -331,26 +335,12 @@
                         Console.Write("Digite o horário do festival: ");
                         string? horario = Console.ReadLine();
 
-                        bool dataValida = DateTime.TryParseExact( // validando as datas
-                            data,
-                            "dd/MM/yyyy",
-                            CultureInfo.InvariantCulture,
-                            DateTimeStyles.None,
-                            out _
+                        //validacao de datas e horarios
+                        bool dataValida = DateTime.TryParseExact( data, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _
                         );
-                        bool horarioValido = DateTime.TryParseExact( // validando horários
-                            horario,
-                            "HH:mm",
-                            CultureInfo.InvariantCulture,
-                            DateTimeStyles.None,
-                            out _
+                        bool horarioValido = DateTime.TryParseExact( horario, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out _
                         );
-                        if (!string.IsNullOrWhiteSpace(nome) && //verifica se o campo n ta vazio
-                            !string.IsNullOrWhiteSpace(local) &&
-                            !string.IsNullOrWhiteSpace(data) &&
-                            !string.IsNullOrWhiteSpace(horario) &&
-                            dataValida &&
-                            horarioValido)
+                        if (!string.IsNullOrWhiteSpace(nome) && !string.IsNullOrWhiteSpace(local) && !string.IsNullOrWhiteSpace(data) && !string.IsNullOrWhiteSpace(horario) && dataValida && horarioValido)
                         {
                             gerenciadorEquipes.CadastrarFestival(nome, local, data, horario);
 
@@ -512,7 +502,7 @@
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Para registrar uma partida de esports (qualquer modalidade online), você deve informar");
             Console.WriteLine("O nome das equipes;");
-            Console.WriteLine("E o número de pontos de cada equipe.")
+            Console.WriteLine("E o número de pontos de cada equipe.");
             Console.WriteLine();
 
             Console.ForegroundColor = ConsoleColor.DarkRed;
